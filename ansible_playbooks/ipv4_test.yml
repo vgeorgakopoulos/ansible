@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Check eht0 ipv4 address for every host
+      var:{{ ansible_eth0.ipv4.address }}
+        register: result    
+      
+    - name: Output the result value
+      debug: msg="{{result.stdout}}"

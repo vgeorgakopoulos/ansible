@@ -1,0 +1,6 @@
+---
+- hosts: centOS
+  remote_user: root
+  tasks:
+    - name: Update yum packages
+      command: yum -y update

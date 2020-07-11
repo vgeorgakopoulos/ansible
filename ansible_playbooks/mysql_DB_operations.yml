@@ -1,0 +1,22 @@
+---
+- hosts: webservers 
+  remote_user: root
+
+  tasks:
+  - name: Install pip
+    apt: name=python-pip state=present
+  
+  - name: Install libmysqlclient-dev
+    apt: name=libmysqlclient-dev state=present
+  
+  - name: Install the Python MySQLB module
+    pip: name=MySQL-python
+
+  - name: Create DB user dbuser
+    mysql_user: user=dbuser password=dbuser priv=*.*:ALL state=present
+
+  - name: Create DB test
+    mysql_db: db=test state=present
+
+  - name: Create DB table register
+    command: mysql -u dbuser -pdbuser -e 'USE test; CREATE TABLE IF NOT EXISTS register (name varchar(30), email varchar(30));'

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: FUCKING RESTART NAGIOS (nrpe agents)
+      service:
+       name: nrpe
+       state: restarted

@@ -1,0 +1,6 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Check eht0 ipv4 address for every host
+      debug: msg="ipv4 address is {{ ansible_eth0.ipv4.address }}"

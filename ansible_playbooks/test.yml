@@ -1,0 +1,11 @@
+---
+- hosts: test_containers
+  remote_user: root
+  vars:
+   sample_text: 'This is a sample text coming straight from Ansible!!!'
+
+  tasks:
+  - name: Write a sample text to a remote file
+    copy:
+     dest: /home/test
+     content: "{{ sample_text }}"

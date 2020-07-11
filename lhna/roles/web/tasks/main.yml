@@ -1,0 +1,3 @@
+---
+- name: Copy the sample index.html file to remote web servers
+  template: src=index.html.j2 dest=/var/www/html/index.html

@@ -1,0 +1,16 @@
+---
+ 
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Update apt packages
+      apt:
+       update_cache: yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+        
+    - name: Update yum packages
+      yum:
+       update_cache: yes
+       name: '*'
+       state: latest
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'

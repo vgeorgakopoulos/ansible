@@ -1,0 +1,6 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Check os distriution, version and release
+      debug: msg="{{ansible_distribution}} {{ansible_distribution_version}} {{ansible_distribution_release}}"

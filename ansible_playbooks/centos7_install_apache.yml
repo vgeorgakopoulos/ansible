@@ -1,0 +1,25 @@
+---
+- hosts: webservers
+  remote_user: root
+  tasks:
+  - name: install epel repo 
+    yum: name=epel-release state=present
+    
+  - name: install python bindings for SELinux
+    yum: name={{item}} state=present
+    with_items:
+    - libselinux-python
+    - libsemanage-python
+
+  - name: test to see if SELinux is running
+    command: getenforce
+    register: sestatus
+    changed_when: false
+
+  - name: Install the httpd rpm
+    yum: name=httpd
+   
+  - name: start apache
+    service: name=httpd state=started enabled=yes
+
+
